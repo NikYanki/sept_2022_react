@@ -1,0 +1,29 @@
+img{
+    height: 200px;
+}
+.containerS{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.character{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.containerRM{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2%;
+    justify-content: center;
+}
