@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {CharactersComponent}from'../'
-
 const CharacterComponent = ({character}) => {
     const {name, species, image, status, gender} = character
     return (

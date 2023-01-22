@@ -4,7 +4,6 @@ import {RickMorty} from '../../configs'
 import {CharacterComponent} from '../'
 
 const CharactersComponent = () => {
-    console.log(RickMorty)
     return (
         <div className='containerRM'>
             {

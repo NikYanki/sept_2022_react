@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {SimpsonsComponent} from '../'
-
 const SimpsonComponent = ({simpson}) => {
     const {name, url} = simpson;
     return (
