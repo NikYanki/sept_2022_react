@@ -1,0 +1,4 @@
+.AlbumsPage{
+    display: flex;
+    flex-direction: row;
+}
