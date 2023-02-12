@@ -1,11 +1,18 @@
 import React from 'react';
+import {Component} from "react";
 
-const App = () => {
-    return (
-        <div>
+import {PostsComponent, UsersComponent} from "./conponents";
 
-        </div>
-    );
-};
+class App extends Component{
+
+    render() {
+        return(
+            <div>
+               <UsersComponent/>
+                <PostsComponent/>
+            </div>
+        )
+    }
+}
 
 export {App};
