@@ -8,15 +8,15 @@ const initialState = {
     selectedUser: null
 }
 
-const getById =createAsyncThunk("userSlice/getById",
-    async ({id},{rejectWithValue})=>{
-    try {
-      const {data} = await UsersService.getById(id)
-        return data
-    }catch (e){
-        return rejectWithValue(e.response.data)
+const getById = createAsyncThunk("userSlice/getById",
+    async ({id}, {rejectWithValue}) => {
+        try {
+            const {data} = await UsersService.getById(id)
+            return data
+        } catch (e) {
+            return rejectWithValue(e.response.data)
 
-    }
+        }
     })
 
 const getAll = createAsyncThunk(
@@ -40,33 +40,32 @@ const UserSlice = createSlice({
     },
     initialState,
     name: 'userSlice',
-    extraReducers: {
-        [getAll.fulfilled]: (state, action) => {
-            state.users = action.payload
-            state.loading =false
-        },
-        [getAll.rejected]: (state, action) => {
-            state.errors = action.payload
-            state.loading =false
+    extraReducers: builder =>
+        builder
+            .addCase(getAll.fulfilled, (state, action) => {
+                state.users = action.payload
+                state.loading = false
+            })
+            .addCase(getAll.rejected, (state, action) => {
+                state.errors = action.payload
+                state.loading = false
+            })
+            .addCase(getAll.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(getById.fulfilled, (state, action) => {
+                state.selectedUser = action.payload
+                state.loading = false
+            })
+            .addCase(getById.rejected, (state, action) => {
+                state.errors = action.payload
+                state.loading = false
+            })
+            .addCase(getById.pending, (state) => {
+                state.loading = true
+            })
 
-        },
-        [getAll.pending]: (state) => {
-            state.loading = true
-        },
-        [getById.fulfilled]: (state, action) => {
-            state.selectedUser = action.payload
-            state.loading =false
-        },
-        [getById.rejected]: (state, action) => {
-            state.errors = action.payload
-            state.loading =false
-
-        },
-        [getById.pending]: (state) => {
-            state.loading = true
-        }
-    }
-})
+});
 
 const {reducer: userReducer, actions: {setSelectedUser}} = UserSlice
 
