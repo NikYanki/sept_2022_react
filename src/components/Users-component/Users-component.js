@@ -6,12 +6,13 @@ import {UserComponent} from "../User-component/User-component";
 
 const UsersComponent = () => {
     const dispatch =useDispatch()
-    const {users}=useSelector(state=>state.users)
+    const {users,errors,loading}=useSelector(state=>state.users)
     useEffect(()=>{
-        UsersService.getAllUsers().then(({data})=>dispatch(userActions.getAll(data)))
+       dispatch(userActions.getAll())
     },[])
     return (
         <div>
+            {loading&&<h1>loading</h1>}
             {users.map(user=><UserComponent key={user.id} user={user}/>)}
         </div>
     );

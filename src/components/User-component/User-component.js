@@ -9,7 +9,8 @@ const UserComponent = ({user}) => {
         <div>
             <p>id:{id}</p>
             <p>name:{name}</p>
-            <button onClick={()=>{dispatch(userActions.setSelectedUser(user))}}></button>
+            <button onClick={()=>{dispatch(userActions.setSelectedUser(user))}}>select</button>
+            <button onClick={()=>{dispatch(userActions.getById({id}))}}>api select</button>
         </div>
     );
 };
