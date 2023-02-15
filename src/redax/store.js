@@ -1,4 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
+
 import {userReducer} from "./slices/user-slice/user-slice";
 import {postReducer} from "./slices/post-slice/post-slice";
 

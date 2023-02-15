@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {PostComponent} from "../Post-component/Post-component";
-import {LoaderComponent} from "../Loader-component/Loader-component";
+
+import {PostComponent,LoaderComponent} from "../";
 import {postsActions} from "../../redax";
 
 const PostsComponent = () => {
