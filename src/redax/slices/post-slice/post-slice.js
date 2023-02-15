@@ -1,84 +1,69 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {UsersService} from "../../../services";
+import {PostsService} from "../../../services";
 
 const initialState = {
-    users: [],
+    posts: [],
+    selectedPost: null,
     errors: null,
-    loading: null,
-    selectedUser: null
+    loading: null
 }
-
-const getById = createAsyncThunk("userSlice/getById",
+const getById = createAsyncThunk("postSlice/getById",
     async ({id}, {rejectWithValue}) => {
         try {
             await new Promise(resolve => setTimeout(() => resolve(), 500))
-            const {data} = await UsersService.getById(id)
+            const {data} = await PostsService.getById(id)
             return data
         } catch (e) {
             return rejectWithValue(e.response.data)
-
         }
     })
 
-const getAll = createAsyncThunk(
-    "userSlice/getAll",
+const getAll = createAsyncThunk("postSlice/getAll",
     async (_, {rejectWithValue}) => {
         try {
             await new Promise(resolve => setTimeout(() => resolve(), 500))
-            const {data} = await UsersService.getAllUsers()
+            const {data} = await PostsService.getAll()
+            console.log(data);
             return data
         } catch (e) {
             return rejectWithValue(e.response.data)
         }
-    }
-)
-
-
-const UserSlice = createSlice({
-    reducers: {
-        setSelectedUser: (state, action) => {
-            state.selectedUser = action.payload
-        }
-    },
-    initialState,
-    name: 'userSlice',
+    })
+const PostSlice = createSlice({
+    reducers: {},
     extraReducers: {
         [getAll.fulfilled]: (state, action) => {
-            state.users = action.payload
+            state.posts = action.payload
             state.loading = false
         },
         [getAll.rejected]: (state, action) => {
             state.errors = action.payload
             state.loading = false
-
         },
         [getAll.pending]: (state) => {
             state.loading = true
         },
         [getById.fulfilled]: (state, action) => {
-            state.selectedUser = action.payload
+            state.selectedPost = action.payload
             state.loading = false
         },
         [getById.rejected]: (state, action) => {
             state.errors = action.payload
             state.loading = false
-
         },
         [getById.pending]: (state) => {
             state.loading = true
         }
-    }
+    },
+    name: "postSlice",
+    initialState
 })
-
-const {reducer: userReducer, actions: {setSelectedUser}} = UserSlice
-
-const userActions = {
+const {reducer: postReducer} = PostSlice
+const postsActions = {
     getAll,
-    setSelectedUser,
     getById
 }
-
 export {
-    userActions,
-    userReducer
+    postsActions,
+    postReducer
 }

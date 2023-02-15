@@ -1,4 +1,5 @@
 const urls={
-    users:'/users'
+    users:'/users',
+    posts:'/posts'
 }
 export {urls}
